@@ -7,8 +7,14 @@ export default function Recipe() {
 
     return(
         <View>
-            <Button title='Dine' icon='check' color='green'/>
-            <Button title='Ditch' icon='close' color='red'/>
+            <Button title='Recipe' icon='check' color='green' onChange={()=>{
+           
+                
+            }}/>
+            <Button title='Ditch' icon='close' color='red' onChange={()=>{
+                
+                
+            }}/>
         </View>
   
     )

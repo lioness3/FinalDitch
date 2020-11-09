@@ -5,11 +5,14 @@ import { FontAwesome } from '@expo/vector-icons';
 // onchange setnew option to true
 
 export default function Button(props) {
+  console.log(props);
   
   
   return (
     <View style={[{backgroundColor:`${props.color}`},styles.buttonContainer]}>
-    <TouchableHighlight>
+    <TouchableHighlight onPress={()=>{
+      props.onChange()
+    }}>
      <Text style={styles.buttonContent}>
       {props.title}
       <FontAwesome name={props.icon} size={50} color="black" />
