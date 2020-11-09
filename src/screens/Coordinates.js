@@ -41,7 +41,9 @@ export default function Coordinates({navigation}) {
     if (errorMsg) {
       text = errorMsg;
     } else if (location) {
-      text = <Button title='Location Found. Find a Restaurant' icon='check' color='green'onChange={()=>{navigation.navigate('Restaurant')}}/>
+      text = <Button title='Location Found. Find a Restaurant' icon='check' color='green'onChange={()=>{navigation.navigate('Restaurant', {
+        location: location
+      })}}/>
       // text = JSON.stringify(location)
     }
 
