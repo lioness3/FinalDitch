@@ -1,0 +1,12 @@
+{
+  "name": "finalDitch",
+  "displayName": "finalDitch",
+  "expo": {
+    "name": "finalDitch",
+    "slug": "finalDitch",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
