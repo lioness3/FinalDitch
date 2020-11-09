@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Location from './src/screens/Location';
+import Coordinates from './src/screens/Coordinates';
 import Restaurant from './src/screens/Restaurant';
 import Recipe from './src/screens/Recipe';
 export default function App({navigation}) {
@@ -17,7 +17,7 @@ export default function App({navigation}) {
             backgroundColor: '#171F33',
             fontSize:20 
         }}} >
-          <Tab.Screen name="Location" component={Location} />
+          <Tab.Screen name="Location" component={Coordinates} />
           <Tab.Screen name="Restaurant" component={Restaurant} />
           <Tab.Screen name='Recipe' component={Recipe} />
         </Tab.Navigator> 
