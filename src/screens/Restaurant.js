@@ -1,7 +1,8 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 import Button from '../components/Button';
 import axios from 'axios';
+import * as Linking from 'expo-linking';
 
 export default function Restaurant({route}) {
     const[startFrom, setStartFrom] = useState('0')
@@ -15,13 +16,14 @@ export default function Restaurant({route}) {
     const [typeOfCuisine, setTypeOfCuisine] = useState('');
     const [restaurant, setRestaurant] = useState([]);
     const [moreOptions, setMoreOptions] = useState(false)
-if(route.params.location){
-     lat.current = route.params.location.coords.latitude;
-     long.current = route.params.location.coords.longitude
-    located.current = true
-}
+
+   
+    if(route.params.location){
+        lat.current = route.params.location.coords.latitude;
+        long.current = route.params.location.coords.longitude
+        located.current = true
+    }
 const handleRandomNumber = (data) =>{
-    console.log(startFrom, radius);
     
     if (data.length > 0){ 
         let newList = data
@@ -46,6 +48,8 @@ const handleRandomNumber = (data) =>{
         setRestaurant(name),
         setAddress(address)
         setLoading(false)
+       
+        
     }else{
         setMoreOptions(true)
         setLoading(false)
@@ -78,18 +82,25 @@ const handleRandomNumber = (data) =>{
             console.log('error',err.message)
         })
      }
-    }    
-// if(loading){
-//         return(
-//             <View>
-//                 <ActivityIndicator size='large' color='#95FCF7'/> 
-//                 <Text>
-//                     Thinking...
-//                 </Text>
-//             </View>
-//         )
-//     }else 
-if(moreOptions){
+    } 
+    const openMap = (restaurant)=>{
+        Linking.openURL('https://www.google.com/maps/search/?api=1&query='+`${restaurant}`)
+    }
+    useEffect( ()=>{
+
+        generateRestaurants(startFrom, radius)
+      
+     }, [located.current])   
+if(loading){
+        return(
+            <View>
+                <ActivityIndicator size='large' color='#95FCF7'/> 
+                <Text>
+                    Thinking...
+                </Text>
+            </View>
+        )
+    }else if(moreOptions){
         return(
             <View>
                 <Text>
@@ -112,7 +123,7 @@ if(moreOptions){
                     {restaurant}
                 </Text>
                 <Button title='Dine' icon='check' color='green' onChange={()=>{
-                    
+                    openMap(restaurant)     
                 }}/>
                 <Button title='Ditch' icon='close' color='red' onChange={()=>{
                     generateRestaurants(startFrom, radius)
