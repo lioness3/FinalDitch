@@ -15,7 +15,7 @@ export default function Button(props) {
     }}>
      <Text style={styles.buttonContent}>
       {props.title}
-      <FontAwesome name={props.icon} size={50} color="black" />
+      <FontAwesome name={props.icon} size={30} color="black" />
      </Text>
     </TouchableHighlight>
     </View>
@@ -23,12 +23,23 @@ export default function Button(props) {
 }
 const styles = StyleSheet.create({
   buttonContainer:{
-  borderColor:'black',
-  borderWidth:2,
-  margin:1,
-  
+    borderColor:'grey',
+    borderWidth:2,
+    marginHorizontal:50,
+    marginVertical:10,
+    borderRadius:20,
+    shadowColor:'darkgrey',
+    shadowRadius:1,
+    shadowOffset: { 
+      width: 0,
+      height: 2 
+    },
+    shadowOpacity:1,
   },
   buttonContent:{
- 
+    paddingVertical:20,
+    textAlign:'center',
+    fontWeight:'bold'
+    
   }
 })

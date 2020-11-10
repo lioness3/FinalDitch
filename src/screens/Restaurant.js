@@ -118,7 +118,7 @@ if(loading){
         return(
             <View style={styles.screen}>
                 
-                <OutputBox displayText={restaurant}/>
+                <OutputBox displayText={restaurant} details={address, typeOfCuisine }/>
                     
                 <Button title='Dine' icon='check' color='green' onChange={()=>{
                     openMap(restaurant)     
