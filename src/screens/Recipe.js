@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import Button from '../components/Button';
+import OutputBox from '../components/OutputBox';
 import RecipeArray from '../components/RecipeArray';
 import * as Linking from 'expo-linking';
 
@@ -33,10 +34,10 @@ export default function Recipe({navigation}) {
       }
       if(!loading){
         return(
-            <View>
-                <Text>
-                    {recipe}
-                </Text>
+            <View style={styles.screen}>
+              
+                    <OutputBox displayText={recipe}/>
+               
                 <Button title='Recipe' icon='check' color='green' onChange={()=>{
                     openGoogle(recipe)
                     
@@ -49,10 +50,8 @@ export default function Recipe({navigation}) {
         )
       }else if(restaurants){
         return(
-            <View>
-                <Text>
-                    Maybe you should go out to eat instead...
-                </Text>
+            <View style={styles.screen}>
+                <OutputBox displayText={' Maybe you should go out to eat instead...'}/>
                 <Button title='Find a Restaurant Near Me' icon='check' color='green' onChange={()=>{
                     navigation.navigate('Restaurant')
                     
@@ -61,7 +60,7 @@ export default function Recipe({navigation}) {
         )
       }else{
         return(
-            <View>
+            <View style={styles.screen}>
                 <Button title='Find a Recipe Suggestion' icon='list-alt' color='green' onChange={()=>{
                     generateRecipe()
                     
@@ -71,3 +70,11 @@ export default function Recipe({navigation}) {
       }
   
 }
+const styles = StyleSheet.create({
+    screen:{
+        flex:1,
+        backgroundColor:'black',
+        justifyContent:'center'
+    },
+    
+})

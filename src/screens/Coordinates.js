@@ -45,14 +45,24 @@ export default function Coordinates({navigation}) {
         location: location
       })}}/>
       // text = JSON.stringify(location)
+    } else{
+      text = <Button title='Find my Location' icon='check' color='green'onChange={()=>{Location.getCurrentPositionAsync()}}/>
     }
 
     console.log(location);
     
     return(
-        <View>
+        <View style={styles.screen}>
             
            {text}
         </View>
     )
 }
+const styles = StyleSheet.create({
+  screen:{
+      flex:1,
+      backgroundColor:'black',
+      justifyContent:'center'
+  },
+  
+})

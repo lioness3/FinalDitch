@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import { StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 import Button from '../components/Button';
+import OutputBox from '../components/OutputBox';
 import axios from 'axios';
 import * as Linking from 'expo-linking';
 
@@ -93,19 +94,16 @@ const handleRandomNumber = (data) =>{
      }, [located.current])   
 if(loading){
         return(
-            <View>
+            <View style={styles.screen}>
                 <ActivityIndicator size='large' color='#95FCF7'/> 
-                <Text>
-                    Thinking...
-                </Text>
+                <OutputBox displayText={'Thinking...'}/>
+             
             </View>
         )
     }else if(moreOptions){
         return(
-            <View>
-                <Text>
-                    Please Expand your search for more restaurant suggestions
-                </Text>
+            <View style={styles.screen}>
+                <OutputBox displayText={'Please Expand your search for more restaurant suggestions'}/>
                 <Button title='Expand Search' icon='check' color='green' onChange={()=>{
                     setLoading(true),
                     setMoreOptions(false), 
@@ -118,10 +116,10 @@ if(loading){
         )
     }else{
         return(
-            <View>
-                <Text>
-                    {restaurant}
-                </Text>
+            <View style={styles.screen}>
+                
+                <OutputBox displayText={restaurant}/>
+                    
                 <Button title='Dine' icon='check' color='green' onChange={()=>{
                     openMap(restaurant)     
                 }}/>
@@ -133,3 +131,11 @@ if(loading){
     }
     
 }
+const styles = StyleSheet.create({
+    screen:{
+        flex:1,
+        backgroundColor:'black',
+        justifyContent:'center'
+    },
+    
+  })
