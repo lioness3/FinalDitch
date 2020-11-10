@@ -15,7 +15,7 @@ export default function App({navigation}) {
         <Tab.Navigator tabBarOptions={{activeTintColor: 'tomato',
           inactiveTintColor: 'gray',   style: {
             backgroundColor: '#171F33',
-            fontSize:20 
+        
         }}} >
           <Tab.Screen name="Location" component={Coordinates} />
           <Tab.Screen name="Restaurant" component={Restaurant} />

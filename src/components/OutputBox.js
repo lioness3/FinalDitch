@@ -27,6 +27,12 @@ export default function OutputBox(props) {
       <Text style={styles.outputText}>
       {props.displayText}
       </Text>
+      <View
+  style={{
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+  }}
+/>
 
     </View>
   );
@@ -36,7 +42,7 @@ const styles = StyleSheet.create({
       flex:.5,
         padding:30,
         marginHorizontal:20,
-        backgroundColor:'lightgrey',
+        backgroundColor:'#171F33',
         borderColor:'darkgrey',
         borderWidth:5,
         borderRadius:10
@@ -44,7 +50,7 @@ const styles = StyleSheet.create({
     outputText:{
         textAlign:'center',
         fontWeight:'bold',
-        color:'black',
+        color:'lightgrey',
         fontSize:20
     }
 })
