@@ -31,7 +31,10 @@
     "react-test-renderer": "~16.13.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|my-project|react-native-button)/)"
+    ]
   },
   "private": true
 }

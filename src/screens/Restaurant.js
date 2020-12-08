@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 import Button from '../components/Button';
 import OutputBox from '../components/OutputBox';
 import axios from 'axios';
+import  Coordinates from './Coordinates';
 import * as Linking from 'expo-linking';
-
-export default function Restaurant({route}) {
+import * as Location from 'expo-location';
+export default function Restaurant({route, navigation}) {
     const[startFrom, setStartFrom] = useState('0')
     const [radius, setRadius] = useState('8000')
     const [data, setData] = useState([]);
@@ -18,8 +19,9 @@ export default function Restaurant({route}) {
     const [restaurant, setRestaurant] = useState([]);
     const [moreOptions, setMoreOptions] = useState(false)
 
+  
    
-    if(route.params.location){
+    if(route.params){
         lat.current = route.params.location.coords.latitude;
         long.current = route.params.location.coords.longitude
         located.current = true
@@ -92,14 +94,15 @@ const handleRandomNumber = (data) =>{
         generateRestaurants(startFrom, radius)
       
      }, [located.current])   
-if(loading){
-        return(
-            <View style={styles.screen}>
-                <ActivityIndicator size='large' color='#95FCF7'/> 
-                <OutputBox displayText={'Thinking...'}/>
-             
-            </View>
-        )
+     if(located.current === false){
+        return(        <View style={styles.screen}>
+            <Button title='Find my Location' icon='list-alt' color='green' onChange={()=>{
+   Coordinates()
+            
+               
+                
+            }}/> 
+        </View>)
     }else if(moreOptions){
         return(
             <View style={styles.screen}>
@@ -114,6 +117,15 @@ if(loading){
                 }}/>
             </View>
         )
+    }else if(loading){
+        return(
+            <View style={styles.screen}>
+                <ActivityIndicator size='large' color='#95FCF7'/> 
+                <OutputBox displayText={'Thinking...'}/>
+             
+            </View>
+        )
+     
     }else{
         return(
             <View style={styles.screen}>
